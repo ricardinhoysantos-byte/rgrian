@@ -1,0 +1,442 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Meta tags para PWA e iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="RG Digital SP">
+    <meta name="theme-color" content="#FFFFFF">
+    <meta name="description" content="Aplicativo RG Digital da Polícia Civil de São Paulo">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <title>RG Digital SP</title>
+
+    <!-- Favicons e ícones -->
+    <link rel="icon" type="image/png" href="favicon.png.png">
+
+    <!-- Apple Touch Icon (OBRIGATÓRIO para iPhone) - Múltiplas referências para garantir compatibilidade -->
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon.png.png">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1E4A6B">
+
+    <link rel="stylesheet" href="css.css">
+</head>
+
+<body>
+    <!-- Tela de Loading -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-logo-container">
+            <img src="brasão.png" alt="Brasão da Polícia Civil de São Paulo" class="loading-logo">
+        </div>
+    </div>
+
+    <!-- Tela de Login -->
+    <div id="login-screen" class="screen">
+        <header class="login-header">
+            <h1 class="login-header-title">Entrar</h1>
+        </header>
+
+        <div class="login-container">
+
+            <div class="badge-container">
+                <img src="brasão.png" alt="Brasão da Polícia Civil de São Paulo" class="police-badge-img">
+            </div>
+
+            <h2 class="login-headline">Acesse a sua conta</h2>
+            <p class="login-subtext">Insira sua senha para entrar.</p>
+
+            <div class="password-field-container">
+                <label for="password-input" class="password-label-floating">Senha</label>
+                <input type="password" id="password-input" class="password-input" placeholder="Senha" autocomplete="current-password">
+                <button type="button" id="toggle-password" class="toggle-password" aria-label="Mostrar senha">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                        <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                </button>
+            </div>
+
+            <a href="#" class="forgot-password-link">Esqueci minha senha</a>
+
+            <button id="login-button" class="login-button" disabled>
+                Entrar
+            </button>
+
+            <div class="login-footer-links">
+                <a href="#" class="footer-link">Ajuda</a>
+                <a href="#" class="footer-link">Privacidade</a>
+                <a href="#" class="footer-link">Termos</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tela Carteira -->
+    <div id="wallet-screen" class="screen">
+        <header class="wallet-header">
+            <h1 class="wallet-header-title">Carteira</h1>
+        </header>
+        <div class="screen-content">
+
+            <div class="valid-section">
+                <h3 class="section-title">Válidas</h3>
+                <div class="rg-card">
+                    <div class="rg-icon">
+                        <img src="bandeira do brasil.jpeg" alt="Bandeira do Brasil" class="rg-icon-img">
+                    </div>
+
+                    <div class="rg-content">
+
+                        <div class="rg-type">CIN - Carteira de Identidade Nacional</div>
+
+                        <div class="rg-name">RIAN HENRIQUE</div>
+
+                        <div class="rg-surname">LEMES DOS SANTOS</div>
+
+                        <div class="rg-number">Número: 456.265.748-08</div>
+                    </div>
+                    <svg class="rg-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"/>
+                    </svg>
+                </div>
+            </div>
+
+            <button id="add-wallet-button" class="add-wallet-button">
+                <span class="plus-icon">+</span>
+                <span>Adicionar carteira</span>
+            </button>
+        </div>
+
+        <nav class="tab-bar">
+            <button class="tab-item active" data-screen="wallet">
+                <svg class="tab-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                    <path d="M3 9h18M9 21V9"/>
+                </svg>
+                <span class="tab-label">Carteira</span>
+            </button>
+            <button class="tab-item" data-screen="services">
+                <svg class="tab-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/>
+                    <line x1="7" y1="7" x2="7.01" y2="7"/>
+                </svg>
+                <span class="tab-label">Serviços</span>
+            </button>
+            <button class="tab-item" data-screen="options">
+                <svg class="tab-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="3" y1="12" x2="21" y2="12"/>
+                    <line x1="3" y1="6" x2="21" y2="6"/>
+                    <line x1="3" y1="18" x2="21" y2="18"/>
+                </svg>
+                <span class="tab-label">Opções</span>
+            </button>
+        </nav>
+    </div>
+
+    <!-- Tela Serviços -->
+    <div id="services-screen" class="screen">
+        <header class="wallet-header">
+            <h1 class="wallet-header-title">Serviços</h1>
+        </header>
+        <div class="screen-content">
+
+            <div class="services-list">
+                <div class="service-item">
+                    <div class="service-icon">
+                        <div class="service-icon-inner">2</div>
+                    </div>
+                    <span class="service-title">2ª via de RG</span>
+                    <svg class="chevron-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <nav class="tab-bar">
+            <button class="tab-item" data-screen="wallet">
+                <svg class="tab-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                    <path d="M3 9h18M9 21V9"/>
+                </svg>
+                <span class="tab-label">Carteira</span>
+            </button>
+            <button class="tab-item active" data-screen="services">
+                <svg class="tab-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/>
+                    <line x1="7" y1="7" x2="7.01" y2="7"/>
+                </svg>
+                <span class="tab-label">Serviços</span>
+            </button>
+            <button class="tab-item" data-screen="options">
+                <svg class="tab-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="3" y1="12" x2="21" y2="12"/>
+                    <line x1="3" y1="6" x2="21" y2="6"/>
+                    <line x1="3" y1="18" x2="21" y2="18"/>
+                </svg>
+                <span class="tab-label">Opções</span>
+            </button>
+        </nav>
+    </div>
+
+    <!-- Tela Opções -->
+    <div id="options-screen" class="screen">
+        <header class="wallet-header">
+            <h1 class="wallet-header-title">Opções</h1>
+        </header>
+        <div class="screen-content options-content">
+
+            <div class="options-list">
+                <div class="option-item">
+                    <div class="option-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                            <path d="M7 11V7a5 5 0 0110 0v4"/>
+                        </svg>
+                    </div>
+                    <span class="option-title">Alteração de senha</span>
+                    <svg class="chevron-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"/>
+                    </svg>
+                </div>
+
+                <div class="option-item">
+                    <div class="option-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                    </div>
+                    <span class="option-title">Acesso com biometria</span>
+                    <svg class="chevron-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"/>
+                    </svg>
+                </div>
+
+                <div class="option-item">
+                    <div class="option-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01"/>
+                        </svg>
+                    </div>
+                    <span class="option-title">Perguntas frequentes</span>
+                    <svg class="chevron-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"/>
+                    </svg>
+                </div>
+
+                <div class="option-item">
+                    <div class="option-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+                        </svg>
+                    </div>
+                    <span class="option-title">Chat de atendimento</span>
+                    <svg class="chevron-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"/>
+                    </svg>
+                </div>
+
+                <div class="option-item">
+                    <div class="option-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                            <line x1="16" y1="13" x2="8" y2="13"/>
+                            <line x1="16" y1="17" x2="8" y2="17"/>
+                            <polyline points="10 9 9 9 8 9"/>
+                        </svg>
+                    </div>
+                    <span class="option-title">Termos e condições de uso</span>
+                    <svg class="chevron-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"/>
+                    </svg>
+                </div>
+
+                <div class="option-item">
+                    <div class="option-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                    </div>
+                    <span class="option-title">Política de privacidade</span>
+                    <svg class="chevron-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"/>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="app-info">
+                <div class="app-version">RG Digital SP - v 4.21.1 (6795)</div>
+                <div class="app-developer">Desenvolvido por Valid</div>
+            </div>
+        </div>
+
+        <nav class="tab-bar">
+            <button class="tab-item" data-screen="wallet">
+                <svg class="tab-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                    <path d="M3 9h18M9 21V9"/>
+                </svg>
+                <span class="tab-label">Carteira</span>
+            </button>
+            <button class="tab-item" data-screen="services">
+                <svg class="tab-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/>
+                    <line x1="7" y1="7" x2="7.01" y2="7"/>
+                </svg>
+                <span class="tab-label">Serviços</span>
+            </button>
+            <button class="tab-item active" data-screen="options">
+                <svg class="tab-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="3" y1="12" x2="21" y2="12"/>
+                    <line x1="3" y1="6" x2="21" y2="6"/>
+                    <line x1="3" y1="18" x2="21" y2="18"/>
+                </svg>
+                <span class="tab-label">Opções</span>
+            </button>
+        </nav>
+    </div>
+
+    <!-- Tela Detalhamento RG -->
+    <div id="rg-detail-screen" class="screen rg-detail-screen">
+        <header class="rg-detail-header">
+            <button class="rg-detail-button" aria-label="Voltar" data-rg-back>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="15 18 9 12 15 6"/>
+                </svg>
+            </button>
+            <div class="rg-detail-title-wrapper">
+                <h2 class="rg-detail-title">Carteira</h2>
+            </div>
+            <div class="rg-detail-actions">
+                <button class="rg-detail-button" aria-label="Compartilhar">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="18" cy="5" r="3"/>
+                        <circle cx="6" cy="12" r="3"/>
+                        <circle cx="18" cy="19" r="3"/>
+                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+                    </svg>
+                </button>
+                <button class="rg-detail-button" aria-label="Mais opções">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="5" r="1"/>
+                        <circle cx="12" cy="12" r="1"/>
+                        <circle cx="12" cy="19" r="1"/>
+                    </svg>
+                </button>
+        </header>
+        <div class="rg-detail-tabs">
+            <button class="rg-tab-button active" data-rg-tab="front">Frente</button>
+            <button class="rg-tab-button" data-rg-tab="back">Verso</button>
+            <button class="rg-tab-button" data-rg-tab="qr">QR Code</button>
+            <button class="rg-tab-button" data-rg-tab="info">Info</button>
+        </div>
+        <div class="rg-detail-content">
+            <div class="rg-detail-panel active" data-rg-panel="front">
+                <div class="rg-image-wrapper vertical-card">
+                    <img src="frente.jpg" alt="Frente do RG digital" class="rg-image-rotate-90">
+                </div>
+                <p class="rg-update-text">Última atualização em: <span class="update-time"></span></p>
+            </div>
+            <div class="rg-detail-panel" data-rg-panel="back">
+                <div class="rg-image-wrapper vertical-card">
+                    <img src="verso .png" alt="Verso do RG digital" class="rg-image-rotate-90">
+                </div>
+                <p class="rg-update-text">Última atualização em: <span class="update-time"></span></p>
+            </div>
+            <div class="rg-detail-panel" data-rg-panel="qr">
+                <div class="rg-qr-wrapper">
+                    <img src="qrcode.png" alt="QR Code da carteira" class="rg-qr-image">
+ 
+    <!-- BARRA DE PROGRESSO -->
+    <div class="qr-progress-bar">
+        <div class="qr-progress"></div>
+    </div>
+
+    <!-- CONTADOR -->
+    <div class="rg-qr-timer" id="qr-timer">00:59</div>
+</div>
+                <div class="rg-qr-info">
+                    <p>Utilize esse QR Code para validar os dados da carteira.</p>
+                </div>
+                <p class="rg-update-text">Última atualização em: <span class="update-time"></span></p>
+            </div>
+
+    <!-- ✅ NOVA ABA INFO -->
+    <div class="rg-detail-panel" data-rg-panel="info">
+    <div class="rg-info-container">
+
+        <div class="rg-info-block">
+            <div class="info-title">Certidão de Nascimento</div>
+            <div class="info-text">
+                SÃO JOSE DOS CAMPOS-SP JARDIM PAULISTA CN:LV.A430/<br>
+                FLS.304 / Nº472345
+            </div>
+        </div>
+
+        <div class="rg-info-block">
+            <div class="info-title">Doador de órgãos</div>
+            <div class="info-text">Não</div>
+        </div>
+
+        <div class="rg-info-block">
+            <div class="info-title">
+                Cert. de Nasc. / Cert. de Casamento / Averb. Divórcio
+            </div>
+            <div class="info-text">
+                SÃO JOSE DOS CAMPOS-SP JARDIM PAULISTA CN:LV.A430/<br>
+                FLS.304 / Nº472345
+            </div>
+        </div>
+
+        <div class="rg-info-block">
+            <div class="info-title">Assinatura</div>
+            <div class="rg-signature">
+            </div>
+        </div>
+
+    </div>
+</div>
+        <nav class="tab-bar">
+            <button class="tab-item active" data-screen="wallet">
+                <svg class="tab-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                    <path d="M3 9h18M9 21V9"/>
+                </svg>
+                <span class="tab-label">Carteira</span>
+            </button>
+            <button class="tab-item" data-screen="services">
+                <svg class="tab-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/>
+                    <line x1="7" y1="7" x2="7.01" y2="7"/>
+                </svg>
+                <span class="tab-label">Serviços</span>
+            </button>
+            <button class="tab-item" data-screen="options">
+                <svg class="tab-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="3" y1="12" x2="21" y2="12"/>
+                    <line x1="3" y1="6" x2="21" y2="6"/>
+                    <line x1="3" y1="18" x2="21" y2="18"/>
+                </svg>
+                <span class="tab-label">Opções</span>
+            </button>
+        </nav>
+    </div>
+    <script src="java.js"></script>
+</body>
+
+</html>

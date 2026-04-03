@@ -1,0 +1,1664 @@
+/* ============================================
+   DESIGN TOKENS - Paleta de Cores e Tipografia
+   ============================================ */
+
+:root {
+    /* Cores */
+    --color-bg-light: #F2F2F2;
+    --color-bg-white: #FFFFFF;
+    --color-primary: #1E4A6B;
+    --color-text-secondary: #616161;
+    --color-text-muted: #6B7280;
+    --color-border: #E6E6E6;
+    --color-disabled: #BDBDBD;
+    --color-accent: #FFD100;
+    --color-text-primary: #000000;
+    /* Tipografia */
+    --font-family: 'Roboto', 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    --font-size-title: 20px;
+    --font-size-subtitle: 16px;
+    --font-size-body: 15px;
+    --font-size-small: 13px;
+    --font-size-tiny: 12px;
+    --font-weight-bold: 700;
+    --font-weight-semibold: 600;
+    --font-weight-medium: 500;
+    --font-weight-regular: 400;
+    /* Espaçamentos */
+    --spacing-xs: 8px;
+    --spacing-sm: 12px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    /* Bordas */
+    --border-radius-sm: 8px;
+    --border-radius-md: 10px;
+    --border-radius-lg: 12px;
+    --border-width: 1px;
+    /* Sombras */
+    --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.05);
+    --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.08);
+    /* Alturas */
+    --tab-bar-height: 64px;
+    --button-height: 48px;
+    --touch-target-min: 44px;
+}
+
+/* ============================================
+   RESET E BASE
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: var(--font-family);
+    font-size: var(--font-size-body);
+    color: #333333;
+    background-color: #F0F0F2;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ============================================
+   STATUS BAR (Removida - não exibida)
+   ============================================ */
+
+.status-bar {
+    display: none;
+}
+
+/* ============================================
+   TELA DE LOADING
+   ============================================ */
+
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.loading-screen.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.loading-logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.loading-logo {
+    width: 120px;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+/* ============================================
+   TELAS (SCREENS)
+   ============================================ */
+
+.screen {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    background-color: #F0F0F2;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.screen.active {
+    display: flex;
+}
+
+.screen-content {
+    flex: 1;
+    padding: var(--spacing-lg) var(--spacing-md) calc(var(--tab-bar-height) + var(--spacing-md));
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    min-height: calc(100vh - var(--tab-bar-height));
+}
+
+/* ============================================
+   TÍTULOS DE TELA
+   ============================================ */
+
+.screen-title {
+    font-size: var(--font-size-title);
+    font-weight: var(--font-weight-bold);
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+    color: #333333;
+    flex-shrink: 0;
+    display: none;
+}
+
+/* ============================================
+   TELA DE LOGIN
+   ============================================ */
+
+/* Header da tela de login */
+
+.login-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-md);
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #E5E5E5;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.hamburger-menu {
+    background: none;
+    border: none;
+    padding: var(--spacing-xs);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333333;
+    min-width: 44px;
+    min-height: 44px;
+    transition: opacity 0.2s ease;
+}
+
+.hamburger-menu:active {
+    opacity: 0.6;
+}
+
+.hamburger-menu svg {
+    width: 24px;
+    height: 24px;
+}
+
+.login-header-title {
+    font-size: 18px;
+    font-weight: var(--font-weight-bold);
+    color: #0a0a0a;
+    text-align: center;
+    margin: 0;
+    flex: 1;
+    letter-spacing: 0.5px;
+}
+
+.header-spacer {
+    width: 44px;
+    flex-shrink: 0;
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: var(--spacing-lg) var(--spacing-md);
+    min-height: calc(100vh - 60px);
+    background-color: #F0F0F2;
+}
+
+/* Badge/Brasão da Polícia Civil de São Paulo */
+
+.badge-container {
+    margin: var(--spacing-lg) 0 var(--spacing-xl);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.police-badge-img {
+    width: 100px;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+/* Headline e Subtexto do Login */
+
+.login-headline {
+    font-size: 24px;
+    font-weight: var(--font-weight-bold);
+    color: #000000;
+    text-align: left;
+    margin: 0 0 var(--spacing-xs);
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-subtext {
+    font-size: 15px;
+    color: #666666;
+    text-align: left;
+    margin-top: var(--spacing-xs);
+    margin-bottom: var(--spacing-sm);
+    font-weight: 400;
+    width: 100%;
+    max-width: 400px;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 0.7px;
+    line-height: 1.3;
+    word-spacing: -1px;
+}
+
+/* Campo de Senha */
+
+.password-field-container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: var(--spacing-sm);
+}
+
+.password-label-floating {
+    position: absolute;
+    left: 12px;
+    top: -5px;
+    background-color: #FFFFFF;
+    padding: 0 3px;
+    font-size: 10px;
+    font-weight: var(--font-weight-bold);
+    color: #616161;
+    font-family: var(--font-family);
+    z-index: 1;
+    pointer-events: none;
+    line-height: 1;
+    display: none;
+    align-items: center;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+}
+
+.password-input {
+    width: 100%;
+    height: 44px;
+    padding: 0 var(--spacing-md) 0 var(--spacing-md);
+    padding-right: 50px;
+    border: 2px solid #9E9E9E;
+    border-radius: 6px;
+    font-size: var(--font-size-body);
+    font-family: 'Roboto', 'Open Sans', sans-serif;
+    background-color: #FFFFFF;
+    color: #333333;
+    transition: border-color 0.2s ease;
+}
+
+.password-input:focus {
+    outline: none;
+    border-color: #1E4A6B;
+}
+
+.password-field-container:focus-within .password-label-floating {
+    display: flex;
+}
+
+.password-input::placeholder {
+    color: #616161;
+    font-size: var(--font-size-body);
+    font-family: var(--font-family);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 1px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: var(--spacing-sm);
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--spacing-xs);
+    color: #B0B0B0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease, transform 0.1s ease;
+    min-width: 32px;
+    min-height: 32px;
+}
+
+.password-field-container:focus-within .toggle-password {
+    color: #1E4A6B;
+}
+
+.toggle-password:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.toggle-password svg {
+    width: 20px;
+    height: 20px;
+    stroke-width: 2;
+}
+
+/* Link Esqueci Senha */
+
+.forgot-password-link {
+    align-self: flex-end;
+    margin-right: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+    font-size: 17px;
+    color: #001F3F;
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+    max-width: 400px;
+    width: 100%;
+    text-align: right;
+    transition: opacity 0.2s ease;
+}
+
+.forgot-password-link:active {
+    opacity: 0.7;
+}
+
+/* Botão Entrar */
+
+.login-button {
+    width: 100%;
+    max-width: 100%;
+    height: 40px;
+    background-color: #BDBDBD;
+    border: none;
+    border-radius: var(--border-radius-md);
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-semibold);
+    color: #FFFFFF;
+    font-family: var(--font-family);
+    cursor: not-allowed;
+    transition: background-color 0.2s ease, transform 0.1s ease, border-color 0.2s ease, color 0.2s ease;
+    margin-top: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+}
+
+.login-button:not(:disabled) {
+    background-color: #1E4A6B;
+    color: #FFFFFF;
+    border: none;
+    cursor: pointer;
+}
+
+.login-button:not(:disabled):active {
+    transform: scale(0.98);
+    background-color: #153d5a;
+}
+
+.login-button:disabled {
+    opacity: 1;
+    background-color: #BDBDBD;
+    color: #FFFFFF;
+    border: none;
+    cursor: not-allowed;
+}
+
+/* ============================================
+   TELA DETALHE DA CARTEIRA
+   ============================================ */
+
+.rg-detail-screen {
+    background-color: #F7F7F7;
+}
+
+.rg-detail-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-md);
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #E5E5E5;
+}
+
+.rg-detail-button {
+    background: none;
+    border: none;
+    padding: 6px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: #1E1E1E;
+}
+
+.rg-detail-title-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
+
+.rg-detail-time {
+    font-size: 12px;
+    color: #7a7a7a;
+}
+
+.rg-detail-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 2px 0 0;
+}
+
+.rg-detail-actions {
+    display: flex;
+    gap: var(--spacing-xs);
+}
+
+.rg-detail-tabs {
+    display: flex;
+    justify-content: space-around;
+    background: #FFFFFF;
+    border-bottom: 1px solid #E5E5E5;
+}
+
+.rg-detail-screen .rg-tab-button {
+    flex: 1;
+    background: none;
+    border: none;
+    padding: var(--spacing-sm) 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: #6b6b6b;
+    position: relative;
+    cursor: pointer;
+}
+
+.rg-detail-screen .rg-tab-button.active {
+    color: #1E4A6B;
+}
+
+.rg-detail-screen .rg-tab-button.active::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #1E4A6B;
+}
+
+.rg-detail-content {
+    flex: 1;
+    padding: var(--spacing-lg) var(--spacing-md) calc(var(--tab-bar-height) + var(--spacing-md));
+    overflow-y: auto;
+}
+
+.rg-detail-panel {
+    display: none;
+}
+
+.rg-detail-panel.active {
+    display: block;
+}
+
+.rg-image-wrapper {
+    width: 1000%;
+    border-radius: 0;
+    overflow: visible;
+    background: transparent;
+    /* sem moldura atrás do RG */
+    padding: 50;
+    /* moldura independente do tamanho do RG */
+    box-shadow: none;
+    /* borda sem afetar layout */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rg-image-wrapper.vertical-card {
+    aspect-ratio: 3 / 4;
+    max-width: 1200px;
+    /* ampliar o RG para quase encostar na borda */
+    margin: 50 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Imagem rotacionada 90 graus dentro do cartão vertical */
+
+.rg-image-rotate-90 {
+    transform: rotate(90deg);
+    transform-origin: center center;
+    max-width: 150%;
+    max-height: 150%;
+    object-fit: contain;
+    /* manter imagem inteira */
+    display: block;
+}
+
+.rg-image-wrapper.vertical-card img {
+    width: 129%;
+    height: auto;
+    object-fit: contain;
+    /* garantir imagem inteira sem cortes */
+}
+
+.rg-image-wrapper img {
+    width: 100%;
+    display: block;
+}
+
+/* Exibição vertical (retrato) para imagens do RG */
+
+.rg-image-portrait {
+    height: 490px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.rg-qr-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md);
+    border: 1px solid #E5E5E5;
+    border-radius: 16px;
+    background: #FFFFFF;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+}
+
+.rg-qr-image {
+    width: 260px;
+    height: 260px;
+    object-fit: contain;
+}
+
+.rg-qr-timer {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.rg-qr-info {
+    margin-top: var(--spacing-sm);
+    padding: var(--spacing-sm);
+    border-radius: 12px;
+    background: #e9f3ff;
+    border: 1px solid #c8defc;
+    font-size: 13px;
+    color: #0f3d7a;
+}
+
+.rg-update-text {
+    margin-top: 4px;
+    /* logo abaixo da moldura do RG, bem próximo */
+    font-size: 12px;
+    color: #858585;
+    text-align: center;
+}
+
+@media (max-width: 420px) {
+    .rg-detail-content {
+        padding-bottom: calc(var(--tab-bar-height) + var(--spacing-lg));
+    }
+}
+
+/* ============================================
+   TELA CARTEIRA
+   ============================================ */
+
+/* Footer Links do Login */
+
+.login-footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    margin-top: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+    width: 100%;
+    max-width: 400px;
+}
+
+.footer-link {
+    font-size: 17px;
+    color: #001F3F;
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+    transition: opacity 0.2s ease;
+}
+
+.footer-link:active {
+    opacity: 0.7;
+}
+
+/* ============================================
+   TELA CARTEIRA
+   ============================================ */
+
+.wallet-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-md);
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #E5E5E5;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.wallet-header-title {
+    font-size: var(--font-size-title);
+    font-weight: var(--font-weight-bold);
+    color: #000000;
+    text-align: center;
+    margin: 0;
+    flex: 1;
+}
+
+.valid-section {
+    margin-bottom: var(--spacing-lg);
+}
+
+.section-title {
+    font-size: var(--font-size-subtitle);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-md);
+    text-align: left;
+}
+
+.rg-card {
+    background-color: var(--color-bg-white);
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-md);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    box-shadow: var(--shadow-subtle);
+    transition: transform 0.1s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    min-height: 80px;
+}
+
+.rg-card:active {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card);
+}
+
+.rg-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: #E5E5E5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+    padding: 8px;
+}
+
+.rg-icon-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.rg-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.rg-type {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--color-text-primary);
+    line-height: 1.4;
+    margin-bottom: 2px;
+    font-family: 'Roboto', 'Open Sans', sans-serif;
+}
+
+.rg-name {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--color-text-primary);
+    line-height: 1.2;
+    letter-spacing: 0;
+    font-family: 'Roboto', 'Open Sans', sans-serif;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.rg-surname {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--color-text-primary);
+    line-height: 1.2;
+    letter-spacing: 0;
+    margin-top: 1px;
+    font-family: 'Roboto', 'Open Sans', sans-serif;
+}
+
+.rg-number {
+    font-size: 13px;
+    font-weight: var(--font-weight-regular);
+    color: var(--color-text-secondary);
+    line-height: 1.4;
+    margin-top: 4px;
+}
+
+.rg-chevron {
+    color: var(--color-text-secondary);
+    flex-shrink: 0;
+}
+
+/* Botão Adicionar Carteira */
+
+.add-wallet-button {
+    width: 100%;
+    height: var(--button-height);
+    background-color: transparent;
+    border: 2px solid #1E4A6B;
+    border-radius: var(--border-radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-semibold);
+    color: #1E4A6B;
+    font-family: var(--font-family);
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    margin-top: var(--spacing-md);
+}
+
+.add-wallet-button:active {
+    transform: scale(0.98);
+    background-color: rgba(11, 75, 90, 0.05);
+}
+
+.plus-icon {
+    font-size: 24px;
+    color: #1E4A6B;
+    font-weight: var(--font-weight-bold);
+    line-height: 1;
+}
+
+/* ============================================
+   TELA SERVIÇOS
+   ============================================ */
+
+.services-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.service-item {
+    background-color: var(--color-bg-white);
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-md);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    box-shadow: var(--shadow-subtle);
+    cursor: pointer;
+    transition: transform 0.1s ease, box-shadow 0.2s ease;
+    min-height: 80px;
+}
+
+.service-item:active {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card);
+}
+
+.service-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--border-radius-sm);
+    background-color: var(--color-bg-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: var(--spacing-md);
+    flex-shrink: 0;
+}
+
+.service-icon-inner {
+    width: 32px;
+    height: 32px;
+    border: 2px solid var(--color-text-primary);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+}
+
+.service-title {
+    flex: 1;
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-regular);
+    color: var(--color-text-primary);
+}
+
+.chevron-icon {
+    color: var(--color-text-secondary);
+    flex-shrink: 0;
+}
+
+/* ============================================
+   TELA OPÇÕES
+   ============================================ */
+
+.options-content {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - var(--tab-bar-height));
+    padding: var(--spacing-lg) var(--spacing-md) var(--spacing-md);
+}
+
+.options-list {
+    background-color: var(--color-bg-white);
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    margin-bottom: var(--spacing-lg);
+    flex-shrink: 0;
+}
+
+.option-item {
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-md);
+    min-height: 56px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    border-bottom: var(--border-width) solid var(--color-border);
+}
+
+.option-item:last-child {
+    border-bottom: none;
+}
+
+.option-item:active {
+    background-color: var(--color-bg-light);
+    transform: translateX(4px);
+}
+
+.option-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: var(--color-bg-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: var(--spacing-md);
+    flex-shrink: 0;
+    color: var(--color-primary);
+}
+
+.option-title {
+    flex: 1;
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+}
+
+/* Informações do App */
+
+.app-info {
+    margin-top: auto;
+    padding: var(--spacing-lg) 0 var(--spacing-md);
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-small);
+    line-height: 1.6;
+    flex-shrink: 0;
+}
+
+.app-version {
+    margin-bottom: 4px;
+}
+
+.app-developer {
+    font-weight: var(--font-weight-regular);
+}
+
+/* ============================================
+   TAB BAR (Navegação Inferior)
+   ============================================ */
+
+.tab-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: var(--tab-bar-height);
+    background-color: var(--color-bg-white);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: var(--border-width) solid var(--color-border);
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
+    z-index: 100;
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+.tab-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--spacing-xs);
+    min-height: var(--touch-target-min);
+    transition: color 0.2s ease, transform 0.1s ease;
+    color: var(--color-text-secondary);
+}
+
+.tab-item:active {
+    transform: scale(0.95);
+}
+
+.tab-item.active {
+    color: var(--color-primary);
+}
+
+.tab-icon {
+    width: 24px;
+    height: 24px;
+    stroke-width: 2;
+}
+
+.tab-label {
+    font-size: var(--font-size-tiny);
+    font-weight: var(--font-weight-medium);
+    color: inherit;
+}
+
+.tab-item.active .tab-label {
+    color: var(--color-primary);
+    font-weight: var(--font-weight-semibold);
+}
+
+/* ============================================
+   RESPONSIVIDADE E AJUSTES
+   ============================================ */
+
+@media (max-width: 375px) {
+    :root {
+        --font-size-title: 18px;
+        --spacing-md: 14px;
+    }
+    .police-badge {
+        width: 180px;
+        height: 220px;
+    }
+}
+
+@media (min-width: 420px) {
+    .screen-content,
+    .login-container {
+        max-width: 420px;
+        margin: 0 auto;
+    }
+}
+
+/* Acessibilidade */
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Modo de Alto Contraste */
+
+@media (prefers-contrast: high) {
+    :root {
+        --color-border: #000000;
+        --color-text-secondary: #000000;
+    }
+}
+
+/* ============================================
+   ANIMAÇÕES E TRANSIÇÕES
+   ============================================ */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.screen.active {
+    animation: fadeIn 0.3s ease;
+}
+
+/* Feedback tátil melhorado */
+
+button,
+a,
+.service-item,
+.option-item {
+    -webkit-tap-highlight-color: rgba(11, 75, 90, 0.1);
+}
+
+/* Scrollbar personalizada (opcional) */
+
+.screen-content::-webkit-scrollbar {
+    width: 4px;
+}
+
+.screen-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.screen-content::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 2px;
+}
+
+.screen-content::-webkit-scrollbar-thumb:hover {
+    background: var(--color-text-secondary);
+}
+
+@media (max-width: 600px) {
+    .rg-image-wrapper.vertical-card {
+        max-width: 95vw;
+        /* ocupar quase toda a largura da tela */
+        max-height: 88vh;
+        /* ocupar quase toda a altura sem cortar */
+    }
+}
+
+/* ============================================
+   TELA CARTEIRA
+   ============================================ */
+
+/* Footer Links do Login */
+
+.login-footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    margin-top: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+    width: 100%;
+    max-width: 400px;
+}
+
+.footer-link {
+    font-size: 17px;
+    color: #001F3F;
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+    transition: opacity 0.2s ease;
+}
+
+.footer-link:active {
+    opacity: 0.7;
+}
+
+/* ============================================
+   TELA CARTEIRA
+   ============================================ */
+
+.wallet-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-md);
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #E5E5E5;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.wallet-header-title {
+    font-size: var(--font-size-title);
+    font-weight: var(--font-weight-bold);
+    color: #000000;
+    text-align: center;
+    margin: 0;
+    flex: 1;
+}
+
+.valid-section {
+    margin-bottom: var(--spacing-lg);
+}
+
+.section-title {
+    font-size: var(--font-size-subtitle);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-md);
+    text-align: left;
+}
+
+.rg-card {
+    background-color: var(--color-bg-white);
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-md);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    box-shadow: var(--shadow-subtle);
+    transition: transform 0.1s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    min-height: 80px;
+}
+
+.rg-card:active {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card);
+}
+
+.rg-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: #E5E5E5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+    padding: 8px;
+}
+
+.rg-icon-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.rg-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.rg-type {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--color-text-primary);
+    line-height: 1.4;
+    margin-bottom: 2px;
+    font-family: 'Roboto', 'Open Sans', sans-serif;
+}
+
+.rg-name {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--color-text-primary);
+    line-height: 1.2;
+    letter-spacing: 0;
+    font-family: 'Roboto', 'Open Sans', sans-serif;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.rg-surname {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--color-text-primary);
+    line-height: 1.2;
+    letter-spacing: 0;
+    margin-top: 1px;
+    font-family: 'Roboto', 'Open Sans', sans-serif;
+}
+
+.rg-number {
+    font-size: 13px;
+    font-weight: var(--font-weight-regular);
+    color: var(--color-text-secondary);
+    line-height: 1.4;
+    margin-top: 4px;
+}
+
+.rg-chevron {
+    color: var(--color-text-secondary);
+    flex-shrink: 0;
+}
+
+/* Botão Adicionar Carteira */
+
+.add-wallet-button {
+    width: 100%;
+    height: var(--button-height);
+    background-color: transparent;
+    border: 2px solid #1E4A6B;
+    border-radius: var(--border-radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-semibold);
+    color: #1E4A6B;
+    font-family: var(--font-family);
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    margin-top: var(--spacing-md);
+}
+
+.add-wallet-button:active {
+    transform: scale(0.98);
+    background-color: rgba(11, 75, 90, 0.05);
+}
+
+.plus-icon {
+    font-size: 24px;
+    color: #1E4A6B;
+    font-weight: var(--font-weight-bold);
+    line-height: 1;
+}
+
+/* ============================================
+   TELA SERVIÇOS
+   ============================================ */
+
+.services-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.service-item {
+    background-color: var(--color-bg-white);
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-md);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    box-shadow: var(--shadow-subtle);
+    cursor: pointer;
+    transition: transform 0.1s ease, box-shadow 0.2s ease;
+    min-height: 80px;
+}
+
+.service-item:active {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card);
+}
+
+.service-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--border-radius-sm);
+    background-color: var(--color-bg-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: var(--spacing-md);
+    flex-shrink: 0;
+}
+
+.service-icon-inner {
+    width: 32px;
+    height: 32px;
+    border: 2px solid var(--color-text-primary);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+}
+
+.service-title {
+    flex: 1;
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-regular);
+    color: var(--color-text-primary);
+}
+
+.chevron-icon {
+    color: var(--color-text-secondary);
+    flex-shrink: 0;
+}
+
+/* ============================================
+   TELA OPÇÕES
+   ============================================ */
+
+.options-content {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - var(--tab-bar-height));
+    padding: var(--spacing-lg) var(--spacing-md) var(--spacing-md);
+}
+
+.options-list {
+    background-color: var(--color-bg-white);
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    margin-bottom: var(--spacing-lg);
+    flex-shrink: 0;
+}
+
+.option-item {
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-md);
+    min-height: 56px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    border-bottom: var(--border-width) solid var(--color-border);
+}
+
+.option-item:last-child {
+    border-bottom: none;
+}
+
+.option-item:active {
+    background-color: var(--color-bg-light);
+    transform: translateX(4px);
+}
+
+.option-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: var(--color-bg-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: var(--spacing-md);
+    flex-shrink: 0;
+    color: var(--color-primary);
+}
+
+.option-title {
+    flex: 1;
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+}
+
+/* Informações do App */
+
+.app-info {
+    margin-top: auto;
+    padding: var(--spacing-lg) 0 var(--spacing-md);
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-small);
+    line-height: 1.6;
+    flex-shrink: 0;
+}
+
+.app-version {
+    margin-bottom: 4px;
+}
+
+.app-developer {
+    font-weight: var(--font-weight-regular);
+}
+
+/* ============================================
+   TAB BAR (Navegação Inferior)
+   ============================================ */
+
+.tab-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: var(--tab-bar-height);
+    background-color: var(--color-bg-white);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: var(--border-width) solid var(--color-border);
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
+    z-index: 100;
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+.tab-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--spacing-xs);
+    min-height: var(--touch-target-min);
+    transition: color 0.2s ease, transform 0.1s ease;
+    color: var(--color-text-secondary);
+}
+
+.tab-item:active {
+    transform: scale(0.95);
+}
+
+.tab-item.active {
+    color: var(--color-primary);
+}
+
+.tab-icon {
+    width: 24px;
+    height: 24px;
+    stroke-width: 2;
+}
+
+.tab-label {
+    font-size: var(--font-size-tiny);
+    font-weight: var(--font-weight-medium);
+    color: inherit;
+}
+
+.tab-item.active .tab-label {
+    color: var(--color-primary);
+    font-weight: var(--font-weight-semibold);
+}
+
+/* ============================================
+   RESPONSIVIDADE E AJUSTES
+   ============================================ */
+
+@media (max-width: 375px) {
+    :root {
+        --font-size-title: 18px;
+        --spacing-md: 14px;
+    }
+    .police-badge {
+        width: 180px;
+        height: 220px;
+    }
+}
+
+@media (min-width: 420px) {
+    .screen-content,
+    .login-container {
+        max-width: 420px;
+        margin: 0 auto;
+    }
+}
+
+/* Acessibilidade */
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Modo de Alto Contraste */
+
+@media (prefers-contrast: high) {
+    :root {
+        --color-border: #000000;
+        --color-text-secondary: #000000;
+    }
+}
+
+/* ============================================
+   ANIMAÇÕES E TRANSIÇÕES
+   ============================================ */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.screen.active {
+    animation: fadeIn 0.3s ease;
+}
+
+/* Feedback tátil melhorado */
+
+button,
+a,
+.service-item,
+.option-item {
+    -webkit-tap-highlight-color: rgba(11, 75, 90, 0.1);
+}
+
+/* Scrollbar personalizada (opcional) */
+
+.screen-content::-webkit-scrollbar {
+    width: 4px;
+}
+
+.screen-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.screen-content::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 2px;
+}
+
+.screen-content::-webkit-scrollbar-thumb:hover {
+    background: var(--color-text-secondary);
+}
+
+/* Barra de progresso do QR */
+.qr-progress-bar {
+    width: 100%;
+    height: 5px;
+    background: #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.qr-progress {
+    height: 100%;
+    width: 100%;
+    background: #1E4A6B;
+    transition: width 1s linear;
+}
+.rg-info-container {
+    padding: 16px;
+}
+
+.rg-info-block {
+    margin-bottom: 22px;
+}
+
+.info-title {
+    font-size: 14px;
+    color: #222;
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+.info-text {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.5;
+}
+
+.rg-signature {
+    margin-top: 10px;
+}
+
+.rg-signature img {
+    width: 260px;
+}
+
+.rg-detail-panel {
+    min-width: 100%;
+    flex-shrink: 0;
+    transition: transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+/* Borda vermelha quando senha incorreta */
+.input-error {
+    border: 2px solid red !important;
+}
+
+/* Mensagem de erro flutuante sobre o input (não empurra o botão) */
+.password-error {
+    color: rgb(224, 100, 100);
+    font-size: 0.8rem;
+    position: absolute;
+    top: 100%; /* logo abaixo do input */
+    left: 0;
+    margin-top: 2px;
+    display: none;
+}
+#toggle-password.error svg {
+    stroke: red; /* deixa o ícone vermelho */
+    transition: stroke 0.2s ease;
+}
